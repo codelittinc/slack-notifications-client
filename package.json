@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "github-pr-notifications",
+  "name": "slack-notifications",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.mjs",
@@ -11,22 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codelittinc/github-pr-notifications.git"
+    "url": "git+https://github.com/codelittinc/slack-notifications.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codelittinc/github-pr-notifications/issues"
+    "url": "https://github.com/codelittinc/slack-notifications/issues"
   },
-  "homepage": "https://github.com/codelittinc/github-pr-notifications#readme",
+  "homepage": "https://github.com/codelittinc/slack-notifications#readme",
   "dependencies": {
-    "@octokit/rest": "^16.36.0",
     "@slack/web-api": "^5.7.0",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongodb": "^3.4.1"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2",
