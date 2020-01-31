@@ -27,4 +27,12 @@ app.post('/channel-message', async (req, res) => {
   res.send(response)
 });
 
+app.get('/', async (req, res) => {
+  res.send({
+    status: 200,
+  })
+})
+
+
+
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
