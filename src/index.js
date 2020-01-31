@@ -27,6 +27,22 @@ app.post('/channel-message', async (req, res) => {
   res.send(response)
 });
 
+app.patch('/channel-message', async (req, res) => {
+  const {
+    channel,
+    message,
+    ts
+  } = req.body;
+
+  const response = await Slack.updateMessage({
+    message,
+    channelName: channel,
+    ts
+  });
+
+  res.send(response)
+});
+
 app.get('/', async (req, res) => {
   res.send({
     status: 200,
