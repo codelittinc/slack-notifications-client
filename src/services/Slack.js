@@ -22,6 +22,8 @@ class Slack {
       parse: 'full'
     });
 
+    console.log(`Message sent to ${channelName} Message: ${message} TS: ${ts}`);
+
     return res;
   };
 };
