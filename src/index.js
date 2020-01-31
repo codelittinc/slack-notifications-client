@@ -4,7 +4,11 @@ dotenv.config()
 import bodyParser from 'body-parser';
 import express from 'express';
 
-import { Slack } from '@services';
+import {
+  ChannelsController,
+  DirectsController,
+  ReactionsController,
+} from '@controllers';
 
 const app = express()
 app.use(bodyParser.json());
@@ -12,35 +16,23 @@ app.use(bodyParser.json());
 const PORT = process.env.PORT || 3001
 
 app.post('/channel-message', async (req, res) => {
-  const {
-    channel,
-    message,
-    ts
-  } = req.body;
-
-  const response = await Slack.sendChannelMessage({
-    message,
-    channelName: channel,
-    ts
-  });
-
-  res.send(response)
+  ChannelsController.sendMessage(req, res);
 });
 
 app.patch('/channel-message', async (req, res) => {
-  const {
-    channel,
-    message,
-    ts
-  } = req.body;
+  ChannelsController.updateMessage(req, res);
+});
 
-  const response = await Slack.updateMessage({
-    message,
-    channelName: channel,
-    ts
-  });
+app.post('/direct-message', async (req, res) => {
+  DirectsController.sendMessage(req, res);
+});
 
-  res.send(response)
+app.post('/reactions', async (req, res) => {
+  ReactionsController.addReaction(req, res);
+});
+
+app.delete('/reactions', async (req, res) => {
+  ReactionsController.removeReaction(req, res);
 });
 
 app.get('/', async (req, res) => {
@@ -48,7 +40,5 @@ app.get('/', async (req, res) => {
     status: 200,
   })
 })
-
-
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
