@@ -31,7 +31,7 @@ app.post('/reactions', async (req, res) => {
   ReactionsController.addReaction(req, res);
 });
 
-app.delete('/reactions', async (req, res) => {
+app.post('/reactions/delete', async (req, res) => {
   ReactionsController.removeReaction(req, res);
 });
 
