@@ -15,15 +15,15 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3001
 
-app.post('/channel-message', async (req, res) => {
+app.post('/channel-messages', async (req, res) => {
   ChannelsController.sendMessage(req, res);
 });
 
-app.patch('/channel-message', async (req, res) => {
+app.patch('/channel-messages', async (req, res) => {
   ChannelsController.updateMessage(req, res);
 });
 
-app.post('/direct-message', async (req, res) => {
+app.post('/direct-messages', async (req, res) => {
   DirectsController.sendMessage(req, res);
 });
 
