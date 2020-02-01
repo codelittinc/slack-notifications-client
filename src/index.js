@@ -5,6 +5,7 @@ class SlackNotificationsClient {
     this.bot = bot;
     this.apiKey = apiKey;
     this.apiURI = apiURI;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${apiKey}` 
   }
 
   async sendDirectMessage({ message, username }) {
