@@ -1,44 +1,69 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import axios from 'axios';
 
-import bodyParser from 'body-parser';
-import express from 'express';
+class SlackNotifications {
+  constructor({ bot, apiKey, serverURI }) {
+    this.bot = bot;
+    this.apiKey = apiKey;
+    this.serverURI = serverURI;
+  }
 
-import {
-  ChannelsController,
-  DirectsController,
-  ReactionsController,
-} from '@controllers';
+  async sendDirectMessage({ message, username }) {
+    const res = await axios.post(this.getUrl('direct-messages'), {
+      message,
+      username,
+      bot: this.bot,
+    })
 
-const app = express()
-app.use(bodyParser.json());
+    return res.data;
+  };
 
-const PORT = process.env.PORT || 3001
+  async sendMessage({ message, channel, ts }) {
+    const res = await axios.post(this.getUrl('channel-messages'), {
+      message,
+      channel,
+      ts,
+      bot: this.bot,
+    })
 
-app.post('/channel-messages', async (req, res) => {
-  ChannelsController.sendMessage(req, res);
-});
+    return res.data;
+  };
 
-app.patch('/channel-messages', async (req, res) => {
-  ChannelsController.updateMessage(req, res);
-});
+  async updateMessage({ message, channel, ts }) {
+    const res = await axios.patch(this.getUrl('channel-messages'), {
+      message,
+      channel,
+      ts,
+      bot: this.bot,
+    });
 
-app.post('/direct-messages', async (req, res) => {
-  DirectsController.sendMessage(req, res);
-});
+    return res.data;
+  };
 
-app.post('/reactions', async (req, res) => {
-  ReactionsController.addReaction(req, res);
-});
+  async sendReaction({ channel, reaction, ts }) {
+    const res = await axios.post(this.getUrl('reactions'), {
+      channel,
+      reaction,
+      ts,
+      bot: this.bot,
+    })
 
-app.post('/reactions/delete', async (req, res) => {
-  ReactionsController.removeReaction(req, res);
-});
+    return res.data;
+  };
 
-app.get('/', async (req, res) => {
-  res.send({
-    status: 200,
-  })
-})
+  async removeReaction({ channel, reaction, ts }) {
+    const res = await axios.post(this.getUrl('reactions/delete'), {
+      channel: channel,
+      reaction,
+      ts: ts,
+      bot: this.bot,
+    })
 
-app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
+    return res.data;
+  };
+
+  getUrl(path) {
+    return `${this.serverURI}/${path}`;
+  };
+};
+
+export default SlackNotifications;

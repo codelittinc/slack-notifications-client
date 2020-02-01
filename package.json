@@ -1,37 +1,21 @@
 {
   "type": "module",
-  "name": "slack-notifications",
+  "name": "slack-notifications-client",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.mjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --es-module-specifier-resolution=node --experimental-modules --experimental-json-modules --loader ./loader.js src/index.js",
-    "start:dev": "nodemon --es-module-specifier-resolution=node --experimental-modules --experimental-json-modules --loader ./loader.js src/index.js"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codelittinc/slack-notifications.git"
+    "url": "git+https://github.com/codelittinc/slack-notifications-client.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codelittinc/slack-notifications/issues"
+    "url": "https://github.com/codelittinc/slack-notifications-client/issues"
   },
-  "homepage": "https://github.com/codelittinc/slack-notifications#readme",
+  "homepage": "https://github.com/codelittinc/slack-notifications-client#readme",
   "dependencies": {
-    "@slack/web-api": "^5.7.0",
-    "axios": "^0.19.2",
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.2",
-    "pry": "^0.8.7"
-  },
-  "aliases": {
-    "@services": "./src/services",
-    "@controllers": "./src/controllers"
+    "axios": "^0.19.0"
   }
 }
