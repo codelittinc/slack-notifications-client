@@ -1,9 +1,8 @@
 {
-  "type": "module",
   "name": "slack-notifications-client",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.mjs",
+  "main": "src/index.js",
   "scripts": {},
   "repository": {
     "type": "git",

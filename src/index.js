@@ -1,10 +1,10 @@
-import axios from 'axios';
+const axios  = require('axios');
 
-class SlackNotifications {
-  constructor({ bot, apiKey, serverURI }) {
+class SlackNotificationsClient {
+  constructor({ bot, apiKey, apiURI }) {
     this.bot = bot;
     this.apiKey = apiKey;
-    this.serverURI = serverURI;
+    this.apiURI = apiURI;
   }
 
   async sendDirectMessage({ message, username }) {
@@ -62,8 +62,8 @@ class SlackNotifications {
   };
 
   getUrl(path) {
-    return `${this.serverURI}/${path}`;
+    return `${this.apiURI}/${path}`;
   };
 };
 
-export default SlackNotifications;
+module.exports = SlackNotificationsClient;
