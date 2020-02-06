@@ -40,12 +40,13 @@ class SlackNotificationsClient {
     return res.data;
   };
 
-  async sendReaction({ channel, reaction, ts }) {
+  async sendReaction({ channel, reaction, ts, clearReactions }) {
     const res = await axios.post(this.getUrl('reactions'), {
       channel,
       reaction,
       ts,
       bot: this.bot,
+      clearReactions: clearReactions === undefined ? true : clearReactions
     })
 
     return res.data;
