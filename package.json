@@ -1,11 +1,8 @@
 {
-  "name": "slack-notifications-client",
-  "version": "1.0.1",
+  "name": "@codelittinc/slack-notifications-client",
+  "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/codelittinc/slack-notifications-client.git"
