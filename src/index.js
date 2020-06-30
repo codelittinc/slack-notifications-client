@@ -1,4 +1,4 @@
-const axios  = require('axios');
+const axios = require('axios');
 
 class SlackNotificationsClient {
   constructor({ bot, apiKey, apiURI }) {
@@ -7,6 +7,17 @@ class SlackNotificationsClient {
     this.apiURI = apiURI;
     axios.defaults.headers.common['Authorization'] = `Bearer ${apiKey}` 
   }
+
+  async sendDirectEphemeral({ username, blocks, attachments }) {
+    const res = await axios.post(this.getUrl('direct-ephemeral-messages'), {
+      username,
+      bot: this.bot,
+      blocks,
+      attachments
+    })
+
+    return res.data;
+  };
 
   async sendDirectMessage({ message, username }) {
     const res = await axios.post(this.getUrl('direct-messages'), {
